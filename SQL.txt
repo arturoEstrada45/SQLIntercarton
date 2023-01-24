@@ -1,0 +1,15 @@
+//Tener creada la base de datos antes llamada intercartonPruebas
+
+CREATE TABLE tickets (ticketID int,Asunto varchar(255),Solicitante varchar(255),Estado varchar(255),Prioridad varchar(255),Asignado varchar(255));
+
+ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
+
+CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),usado_por varchar(255));
+
+ALTER TABLE inventarios ADD CONSTRAINT PK_inventatios PRIMARY KEY (equipoID);
+
+CREATE TABLE licencias (licenciaID int, tipoLicencia varchar(255),estado varchar(255),proveedor varchar(255),vencimiento varchar(255),equipoID int);
+
+ALTER TABLE licencias ADD CONSTRAINT PK_licencias PRIMARY KEY (licenciaID);
+
+ALTER TABLE inventarios ADD CONSTRAINT FK_licencias (equipoID) REFERENCES inventarios (equipoID);

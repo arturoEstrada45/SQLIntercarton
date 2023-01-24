@@ -12,4 +12,4 @@ CREATE TABLE licencias (licenciaID int, tipoLicencia varchar(255),estado varchar
 
 ALTER TABLE licencias ADD CONSTRAINT PK_licencias PRIMARY KEY (licenciaID);
 
-ALTER TABLE inventarios ADD CONSTRAINT FK_licencias (equipoID) REFERENCES inventarios (equipoID);
+ALTER TABLE licencias ADD CONSTRAINT FK_licencias FOREIGN KEY (equipoID) REFERENCES inventarios (equipoID);

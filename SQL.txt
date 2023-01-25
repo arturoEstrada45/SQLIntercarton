@@ -1,15 +1,37 @@
 //Tener creada la base de datos antes llamada intercartonPruebas
-
-CREATE TABLE tickets (ticketID int,Asunto varchar(255),Solicitante varchar(255),Estado varchar(255),Prioridad varchar(255),Asignado varchar(255));
-
+//tabla tickets
+CREATE TABLE tickets (ticketID int,asunto varchar(255),descripcion varchar(10000),solicitanteID varchar(99),estado varchar(255),prioridad varchar(255),soporteID varchar(99));
 ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
 
-CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),usado_por varchar(255));
 
+//tabla inventarios
+CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),empleadoID varchar(255));
 ALTER TABLE inventarios ADD CONSTRAINT PK_inventatios PRIMARY KEY (equipoID);
 
+//tabla licencias
 CREATE TABLE licencias (licenciaID int, tipoLicencia varchar(255),estado varchar(255),proveedor varchar(255),vencimiento varchar(255),equipoID int);
-
 ALTER TABLE licencias ADD CONSTRAINT PK_licencias PRIMARY KEY (licenciaID);
 
+//tabla empleados
+CREATE TABLE empleados (empleadoID varchar(99),nombre varchar(255), apellidos varchar(255),area varchar(255));
+ALTER TABLE empleados ADD CONSTRAINT PK_empleados PRIMARY KEY (empleadoID);
+
+//Tabla servicios
+CREATE TABLE servicios (servicioID int, tipoServicio varchar(255), descripcion varchar(500),fecha varchar(99),asignadoID varchar(99));
+ALTER TABLE servicios ADD CONSTRAINT PK_servicios PRIMARY KEY (servicioID);
+
+//tabla contratos
+CREATE TABLE contratos (contratoID int, descripcion varchar(255), proveedor varchar(255), vigencia varchar(255);
+ALTER TABLE contratos ADD CONSTRAINT PK_contratos PRIMARY KEY (contratoID);
+
+//Laves forarenas
+
+ALTER TABLE tickets ADD CONSTRAINT FK_ticket1 FOREIGN KEY (solicitanteID) REFERENCES empleados (empleadoID);
+
+ALTER TABLE tickets ADD CONSTRAINT FK_ticket2 FOREIGN KEY (soporteID) REFERENCES empleados (empleadoID);
+
 ALTER TABLE licencias ADD CONSTRAINT FK_licencias FOREIGN KEY (equipoID) REFERENCES inventarios (equipoID);
+
+ALTER TABLE inventarios ADD CONSTRAINT FK_inventarios FOREIGN KEY (empleadoID) REFERENCES empleados (empleadoID);
+
+ALTER TABLE servicios ADD CONSTRAINT FK_servicios FOREIGN KEY (asignadoID) REFERENCES empleados (empleadoID);

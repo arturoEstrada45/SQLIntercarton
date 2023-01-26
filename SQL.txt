@@ -5,7 +5,7 @@ ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
 
 
 //tabla inventarios
-CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),empleadoID varchar(255));
+CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),empleadoID varchar(255),serviceTag varchar(20),cuentaInicioSesion varchar(255), contrasenia varchar(255));
 ALTER TABLE inventarios ADD CONSTRAINT PK_inventatios PRIMARY KEY (equipoID);
 
 //tabla licencias
@@ -13,7 +13,7 @@ CREATE TABLE licencias (licenciaID int, tipoLicencia varchar(255),estado varchar
 ALTER TABLE licencias ADD CONSTRAINT PK_licencias PRIMARY KEY (licenciaID);
 
 //tabla empleados
-CREATE TABLE empleados (empleadoID varchar(99),nombre varchar(255), apellidos varchar(255),area varchar(255));
+CREATE TABLE empleados (empleadoID varchar(99),nombre varchar(255), apellidos varchar(255),area varchar(255),contrasenia varchar(255),cuentaIntelisis varchar(255),contraseniaIntelisis varchar(255));
 ALTER TABLE empleados ADD CONSTRAINT PK_empleados PRIMARY KEY (empleadoID);
 
 //Tabla servicios
@@ -35,3 +35,11 @@ ALTER TABLE licencias ADD CONSTRAINT FK_licencias FOREIGN KEY (equipoID) REFEREN
 ALTER TABLE inventarios ADD CONSTRAINT FK_inventarios FOREIGN KEY (empleadoID) REFERENCES empleados (empleadoID);
 
 ALTER TABLE servicios ADD CONSTRAINT FK_servicios FOREIGN KEY (asignadoID) REFERENCES empleados (empleadoID);
+
+<div class="col-lg-5 d-none d-lg-block">
+                        
+                    <button type="button"> <img src="../PruebasIntercarton/img/OIP.jpg" width="400" height="200"></button>
+                    
+                    </div>
+                    <button type="button"> <img src="../PruebasIntercarton/img/OIP.jpg" width="400" height="200"></button>
+                    

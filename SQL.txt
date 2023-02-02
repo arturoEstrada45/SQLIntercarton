@@ -13,15 +13,15 @@ CREATE TABLE licencias (licenciaID int, tipoLicencia varchar(255),estado varchar
 ALTER TABLE licencias ADD CONSTRAINT PK_licencias PRIMARY KEY (licenciaID);
 
 //tabla empleados
-CREATE TABLE empleados (empleadoID varchar(99),nombre varchar(255), apellidos varchar(255),area varchar(255),contrasenia varchar(255),cuentaIntelisis varchar(255),contraseniaIntelisis varchar(255));
+CREATE TABLE empleados (empleadoID varchar(99),nombre varchar(255), apellidos varchar(255),area varchar(255),contrasenia varchar(255),cuentaIntelisis varchar(255),contraseniaIntelisis varchar(255),cuentaServidor varchar(255),contraseniaServidor varchar(255));
 ALTER TABLE empleados ADD CONSTRAINT PK_empleados PRIMARY KEY (empleadoID);
 
 //Tabla servicios
-CREATE TABLE servicios (servicioID int, tipoServicio varchar(255), descripcion varchar(500),fecha varchar(99),asignadoID varchar(99));
+CREATE TABLE servicios (servicioID int, tipoServicio varchar(255), descripcion varchar(500),fecha varchar(99),asignadoID varchar(99),estado varchar(99));
 ALTER TABLE servicios ADD CONSTRAINT PK_servicios PRIMARY KEY (servicioID);
 
 //tabla contratos
-CREATE TABLE contratos (contratoID int, descripcion varchar(255), proveedor varchar(255), vigencia varchar(255);
+CREATE TABLE contratos (contratoID int, descripcion varchar(255), proveedor varchar(255), vigencia varchar(255));
 ALTER TABLE contratos ADD CONSTRAINT PK_contratos PRIMARY KEY (contratoID);
 
 //Laves forarenas
@@ -36,10 +36,5 @@ ALTER TABLE inventarios ADD CONSTRAINT FK_inventarios FOREIGN KEY (empleadoID) R
 
 ALTER TABLE servicios ADD CONSTRAINT FK_servicios FOREIGN KEY (asignadoID) REFERENCES empleados (empleadoID);
 
-<div class="col-lg-5 d-none d-lg-block">
-                        
-                    <button type="button"> <img src="../PruebasIntercarton/img/OIP.jpg" width="400" height="200"></button>
-                    
-                    </div>
-                    <button type="button"> <img src="../PruebasIntercarton/img/OIP.jpg" width="400" height="200"></button>
+
                     

@@ -4,37 +4,39 @@ CREATE TABLE tickets (ticketID int,asunto varchar(255),descripcion varchar(10000
 ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
 
 
-//tabla inventarios
 CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),empleadoID varchar(255),serviceTag varchar(20),cuentaInicioSesion varchar(255), contrasenia varchar(255));
 ALTER TABLE inventarios ADD CONSTRAINT PK_inventatios PRIMARY KEY (equipoID);
 
-//tabla licencias
+
 CREATE TABLE licencias (licenciaID int, tipoLicencia varchar(255),estado varchar(255),proveedor varchar(255),vencimiento varchar(255),equipoID int);
 ALTER TABLE licencias ADD CONSTRAINT PK_licencias PRIMARY KEY (licenciaID);
 
-//tabla empleados
+
 CREATE TABLE empleados (empleadoID varchar(99),nombre varchar(255), apellidos varchar(255),area varchar(255),contrasenia varchar(255),cuentaIntelisis varchar(255),contraseniaIntelisis varchar(255),cuentaServidor varchar(255),contraseniaServidor varchar(255));
 ALTER TABLE empleados ADD CONSTRAINT PK_empleados PRIMARY KEY (empleadoID);
 
-//Tabla servicios
+
 CREATE TABLE servicios (servicioID int, tipoServicio varchar(255), descripcion varchar(500),fecha varchar(99),asignadoID varchar(99),estado varchar(99));
 ALTER TABLE servicios ADD CONSTRAINT PK_servicios PRIMARY KEY (servicioID);
 
-//tabla contratos
+
 CREATE TABLE contratos (contratoID int, descripcion varchar(255), proveedor varchar(255), vigencia varchar(255));
 ALTER TABLE contratos ADD CONSTRAINT PK_contratos PRIMARY KEY (contratoID);
 
-//Laves forarenas
 
-ALTER TABLE tickets ADD CONSTRAINT FK_ticket1 FOREIGN KEY (solicitanteID) REFERENCES empleados (empleadoID);
 
-ALTER TABLE tickets ADD CONSTRAINT FK_ticket2 FOREIGN KEY (soporteID) REFERENCES empleados (empleadoID);
+ALTER TABLE tickets ADD CONSTRAINT FK_ticket1 FOREIGN KEY (solicitanteID) REFERENCES empleados (empleadoID) ON UPDATE CASCADE ON DELETE SET NULL;
 
-ALTER TABLE licencias ADD CONSTRAINT FK_licencias FOREIGN KEY (equipoID) REFERENCES inventarios (equipoID);
+ALTER TABLE tickets ADD CONSTRAINT FK_ticket2 FOREIGN KEY (soporteID) REFERENCES empleados (empleadoID) ON UPDATE CASCADE ON DELETE SET NULL;
 
-ALTER TABLE inventarios ADD CONSTRAINT FK_inventarios FOREIGN KEY (empleadoID) REFERENCES empleados (empleadoID);
+ALTER TABLE licencias ADD CONSTRAINT FK_licencias FOREIGN KEY (equipoID) REFERENCES inventarios (equipoID) ON UPDATE CASCADE ON DELETE SET NULL;
 
-ALTER TABLE servicios ADD CONSTRAINT FK_servicios FOREIGN KEY (asignadoID) REFERENCES empleados (empleadoID);
+ALTER TABLE inventarios ADD CONSTRAINT FK_inventarios FOREIGN KEY (empleadoID) REFERENCES empleados (empleadoID) ON UPDATE CASCADE ON DELETE SET NULL;
 
+ALTER TABLE servicios ADD CONSTRAINT FK_servicios FOREIGN KEY (asignadoID) REFERENCES empleados (empleadoID) ON UPDATE CASCADE ON DELETE SET NULL;
+
+INSERT INTO `empleados` (`empleadoID`, `nombre`, `apellidos`, `area`, `contrasenia`, `cuentaIntelisis`, `contraseniaIntelisis`, `cuentaServidor`, `contraseniaServidor`) VALUES ('arturo@intercarton.com.mx', 'Arturo', 'Jimenez Estrada', 'Sistemas', 'Artyjim12', 'arturo', '1234', 'arturo2', '123456');
+
+INSERT INTO `empleados` (`empleadoID`, `nombre`, `apellidos`, `area`, `contrasenia`, `cuentaIntelisis`, `contraseniaIntelisis`, `cuentaServidor`, `contraseniaServidor`) VALUES ('pruebas@intercarton.com.mx', 'Pruebas', 'Cuenta de Pruebas', 'Sistemas', '1234', 'Pruebas', '1234', 'Puras pruebas', '1234');
 
                     

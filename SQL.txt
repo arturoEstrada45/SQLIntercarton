@@ -1,12 +1,15 @@
 //Tener creada la base de datos antes llamada intercartonPruebas
 //tabla tickets
-CREATE TABLE tickets (ticketID int,asunto varchar(255),descripcion varchar(10000),solicitanteID varchar(99),estado varchar(255),prioridad varchar(255),soporteID varchar(99));
+CREATE TABLE tickets (ticketID int,asunto varchar(255),descripcion varchar(10000),solicitanteID varchar(99),estado varchar(255),prioridad varchar(255),soporteID varchar(99),fechaAlta DATE,fechaCorreccion DATE);
 ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
  
 //Tabla imagenes
 
 CREATE TABLE img(imagenID int(11),imagenes longblob NOT NULL,ticketID int);
 ALTER TABLE img ADD CONSTRAINT PK_img PRIMARY KEY (imagenID);
+
+CREATE TABLE documents(documentID int(11),nombre varchar(99),titulo varchar(255), contenido mediumblob,tipo varchar(50),ticketID int);
+ALTER TABLE documents ADD CONSTRAINT PK_documents PRIMARY KEY (documentID);
 
 CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),empleadoID varchar(255),serviceTag varchar(20),cuentaInicioSesion varchar(255), contrasenia varchar(255));
 ALTER TABLE inventarios ADD CONSTRAINT PK_inventatios PRIMARY KEY (equipoID);
@@ -40,6 +43,9 @@ ALTER TABLE inventarios ADD CONSTRAINT FK_inventarios FOREIGN KEY (empleadoID) R
 ALTER TABLE servicios ADD CONSTRAINT FK_servicios FOREIGN KEY (asignadoID) REFERENCES empleados (empleadoID) ON UPDATE CASCADE ON DELETE SET NULL;
 
 ALTER TABLE img ADD CONSTRAINT FK_img FOREIGN KEY (ticketID) REFERENCES tickets (ticketID) ON UPDATE CASCADE ON DELETE SET NULL;
+
+ALTER TABLE documents ADD CONSTRAINT FK_documents FOREIGN KEY (ticketID) REFERENCES tickets (ticketID) ON UPDATE CASCADE ON DELETE SET NULL;
+
 
 INSERT INTO `empleados` (`empleadoID`, `nombre`, `apellidos`, `area`, `contrasenia`, `cuentaIntelisis`, `contraseniaIntelisis`, `cuentaServidor`, `contraseniaServidor`) VALUES ('arturo@intercarton.com.mx', 'Arturo', 'Jimenez Estrada', 'Sistemas', 'Artyjim12', 'arturo', '1234', 'arturo2', '123456');
 

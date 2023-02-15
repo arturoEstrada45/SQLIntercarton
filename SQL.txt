@@ -5,7 +5,7 @@ ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
  
 //Tabla imagenes
 
-CREATE TABLE img(imagenID int(11),imagenes longblob NOT NULL,ticketID int);
+CREATE TABLE img(imagenID int(11),imagenes longblob NOT NULL,ticketID int, tipo varchar(150), nombre varchar(100));
 ALTER TABLE img ADD CONSTRAINT PK_img PRIMARY KEY (imagenID);
 
 CREATE TABLE documents(documentID int(11),nombre varchar(99),titulo varchar(255), contenido mediumblob,tipo varchar(50),ticketID int);

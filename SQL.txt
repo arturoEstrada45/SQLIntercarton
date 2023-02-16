@@ -8,7 +8,7 @@ ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
 CREATE TABLE img(imagenID int(11),imagenes longblob NOT NULL,ticketID int, tipo varchar(150), nombre varchar(100));
 ALTER TABLE img ADD CONSTRAINT PK_img PRIMARY KEY (imagenID);
 
-CREATE TABLE documents(documentID int(11),nombre varchar(99),titulo varchar(255), contenido mediumblob,tipo varchar(50),ticketID int);
+CREATE TABLE documents(documentID int(11),document longblob NOT NULL,contratoID int, tipo varchar(150), nombre varchar(100));
 ALTER TABLE documents ADD CONSTRAINT PK_documents PRIMARY KEY (documentID);
 
 CREATE TABLE inventarios(equipoID int,nombre varchar(100),ubicacion varchar(255),descripcion varchar(255),empleadoID varchar(255),serviceTag varchar(20),cuentaInicioSesion varchar(255), contrasenia varchar(255));
@@ -44,7 +44,7 @@ ALTER TABLE servicios ADD CONSTRAINT FK_servicios FOREIGN KEY (asignadoID) REFER
 
 ALTER TABLE img ADD CONSTRAINT FK_img FOREIGN KEY (ticketID) REFERENCES tickets (ticketID) ON UPDATE CASCADE ON DELETE SET NULL;
 
-ALTER TABLE documents ADD CONSTRAINT FK_documents FOREIGN KEY (ticketID) REFERENCES tickets (ticketID) ON UPDATE CASCADE ON DELETE SET NULL;
+ALTER TABLE documents ADD CONSTRAINT FK_documents FOREIGN KEY (contratoID) REFERENCES contratos (contratoID) ON UPDATE CASCADE ON DELETE SET NULL;
 
 
 INSERT INTO `empleados` (`empleadoID`, `nombre`, `apellidos`, `area`, `contrasenia`, `cuentaIntelisis`, `contraseniaIntelisis`, `cuentaServidor`, `contraseniaServidor`) VALUES ('arturo@intercarton.com.mx', 'Arturo', 'Jimenez Estrada', 'Sistemas', 'Artyjim12', 'arturo', '1234', 'arturo2', '123456');

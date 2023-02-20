@@ -3,6 +3,10 @@
 CREATE TABLE tickets (ticketID int,asunto varchar(255),descripcion varchar(10000),solicitanteID varchar(99),estado varchar(255),prioridad varchar(255),soporteID varchar(99),fechaAlta DATE,fechaCorreccion DATE);
 ALTER TABLE tickets ADD CONSTRAINT PK_ticket PRIMARY KEY (ticketID);
  
+CREATE TABLE notificaciones (notificacionID int,descripcion varchar(10000),estado varchar(255),fecha DATE);
+ALTER TABLE notificaciones ADD CONSTRAINT PK_notificaciones PRIMARY KEY (notificacionID);
+
+
 //Tabla imagenes
 
 CREATE TABLE img(imagenID int(11),imagenes longblob NOT NULL,ticketID int, tipo varchar(150), nombre varchar(100));
